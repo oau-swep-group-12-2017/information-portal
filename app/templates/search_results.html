@@ -1,0 +1,28 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search results for "{{ query }}":</h1>
+
+<div class="panel-body">
+   <div class="row">
+   	<div class=" col-md-9 col-lg-9 "> 
+     <table class="table table-user-information">
+     	<tbody>
+     		{% for user in results %}
+     		<td>
+     		{% set username = user.username%}
+      			<a href="{{ url_for('profile', username=username) }}">
+      				{{ user.first_name}} {{ user.last_name }}
+      			</a>
+      		</td>
+  			{% endfor %}
+  		</tbody>
+  	</table>
+  	</div>
+  </div>
+</div>
+          
+  
+
+{% endblock %}

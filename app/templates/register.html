@@ -1,0 +1,51 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- import form template -->
+{% from "_formhelpers.html" import render_login_reg_field %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-push-4 col-md-4 col-sm-push-3 col-sm-6 col-sx-12">
+			<!-- Header end -->
+			<div class="login-container">
+				<div class="login-wrapper animated flipInY">
+					<div id="login" class="show">
+						<div class="login-header">
+							<h4>{{ title }}</h4>
+						</div>
+						
+						<form method=post>
+							<div class="form-group has-feedback">
+				                {{ render_login_reg_field(form.username, id='userName') }}
+				                <i class="fa fa-user text-info form-control-feedback"></i>
+				            </div>
+				            <div class="form-group has-feedback">
+				                {{ render_login_reg_field(form.email) }}
+				                <i class="fa fa-user text-info form-control-feedback"></i>
+				            </div>
+				            <div class="form-group has-feedback">
+				                {{ render_login_reg_field(form.password) }}
+				                <i class="fa fa-user text-info form-control-feedback"></i>
+				            </div>
+				            <div class="form-group has-feedback">
+				                {{ render_login_reg_field(form.confirm) }}
+				                <i class="fa fa-user text-info form-control-feedback"></i>
+				            </div>
+				            <div class="form-group has-feedback">
+				                {{ render_login_reg_field(form.is_what) }}
+				                <i class="fa fa-user text-info form-control-feedback"></i>
+				            </div>
+				       
+				            <input type="submit" value="Sign Up" class="btn btn-danger btn-lg btn-block">
+			       
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

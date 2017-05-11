@@ -1,0 +1,91 @@
+{% macro render_login_reg_field(field) %}
+
+<dt class="form-group has-feedback">
+    <label class="control-label">{{ field.label }}</label>
+    {{ field(class_="form-control", **kwargs)|safe }}
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro render_edit_field(field) %}
+    <td>{{ field.label }}</td>
+    <td>{{ field(**kwargs)|safe }}</td>
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_search_field(field) %}
+    <td>{{ field(**kwargs)|safe }}</td>
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_radio_field(field) %}
+    <td>
+    {{ field(**kwargs)|safe }}
+    </td>
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro render_post_field(field) %}
+    <td>{{ field.label }}</td>
+    <td>{{ field(**kwargs)|safe }}</td>
+    <hr/>
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro render_date_field(field) %}
+    <td>{{ field.label }}</td>
+    <td>{{ field(class_="dtpick", **kwargs)|safe }}</td>
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_old_edit_field(field) %}
+
+<dt class="form-group has-feedback">
+    <label class="control-label">{{ field.label }}</label>
+    {{ field(class_="form-control", **kwargs)|safe }}
+    {% if field.errors %}
+      <ul class=errors>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+{% endmacro %}

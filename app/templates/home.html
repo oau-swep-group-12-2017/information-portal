@@ -1,0 +1,102 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+{% from "_formhelpers.html" import render_search_field %}
+      <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbafr-collapse">
+              < span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><!-- <img src="{{ url_for('.static', filename='img/homeicon.ico') }}"> -->Information Portal</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="login">Login</a></li>
+              <li><a href="register">Sign Up</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="search-container">
+ 	<form method="post" action="index">
+  		<input type="text" name="search" placeholder="Search..">
+  		<input type="submit" value="search" class="btn btn-lg btn-info">
+	</form>
+<!--    <form method="post" action="index">
+      {{ render_search_field(form.search, id='search') }}
+      {{ render_search_field(form.submit, id='search') }} -->
+      <!-- <input type="submit" value="Search" class="btn btn-lg btn-info"> -->
+ <!--  </form>  -->
+  </div>
+
+
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="list-group">
+      <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">ARTICLES/POSTS</h3>
+            </div>
+            {% for post in posts[::-1][:3] %}
+            <a href="#" class="list-group-item">
+              <h4 class="list-group-item-heading">{{ post.title }}</h4>
+              <p class="list-group-item-text">{{ post.body }}</p>
+              <hr/>
+              <p class="list-group-item-text">Posted by: {{ post.author }}</p>
+            </a>
+            {% endfor %}
+      </div>
+    </div><!-- /.col-sm-4 -->
+  </div>  
+
+  <div class="col-md-8">
+    <div class="col-sm-2">
+      <nav class="nav-sidebar">
+        <ul class="nav tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">History</a></li>
+            <li class=""><a href="#tab2" data-toggle="tab">Contact</a></li>
+            <li class=""><a href="#tab3" data-toggle="tab">About</a></li>                               
+        </ul>
+      </nav>
+    </div>
+
+    <!-- tab content -->
+    <div class="tab-content well">
+      <div class="tab-pane active text-style" id="tab1">
+        <h2>Did you Know? </h2>
+             <p>
+                The great Obafemi Awolowo University (OAU) is a federal government owned and operated Nigerian university. The university is in the ancient city of Ile-Ife, Osun State, Nigeria. The university was founded in 1961 and classes commenced in October 1962 as the University of Ife by the regional government of Western Nigeria, led by late chief Samuel Ladoke Akintola, and was renamed Obafemi Awolowo University on 12 May 1987 in honour of Chief Obafemi Awolowo (1909 - 1987), first premier of the Western Region of Nigeria, whose brainchild the university
+             </p>
+      </div>
+      <div class="tab-pane text-style" id="tab2">
+        <h2>Dolor asit amet</h2>
+         <p>Dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
+          ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo 
+          dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore 
+          et dolore magna aliquyam erat, sed diam voluptua.</p>
+      </div>
+      <div class="tab-pane text-style" id="tab3">
+        <h2>Stet clita</h2>
+        <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum 
+          iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla 
+          facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
+          augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
+      </div>
+    </div>
+    <!-- end of tab content -->    
+  </div> 
+		
+</div>
+</div>
+
+{% endblock %}

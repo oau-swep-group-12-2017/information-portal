@@ -1,0 +1,12 @@
+1. 
+
+ myvenv/lib/python3.5/site-packages/flask_whooshalchemy.py", line 243, in _after_flush
+for model, values in bytype.iteritems():
+
+change iteritems() to items()
+
+2. try
+	unicode
+	except NameError
+	unicode = str
+

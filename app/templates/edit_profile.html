@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  $(function() {
+    $( ".dtpick" ).datepicker();
+  });
+  </script>
+</head>
+<body>
+
+{% from "_formhelpers.html" import render_edit_field, render_radio_field, render_date_field %}
+
+<div class="container">
+      <div class="row">
+<!--       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A>
+       <br>
+<p class=" text-info">May 05,2014,03:00 pm </p>
+      </div> -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Welcome, {{ user.username.capitalize() }}
+<!--                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                </span> -->
+              </h3>
+
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                
+                <div class=" col-md-9 col-lg-9 ">
+                
+                  <form method="post">
+                    <table class="table table-user-information">
+                      <tr>
+                        {{ render_edit_field(form.first_name, id='first_name') }}
+                      </tr>
+                      <tr>
+                        {{ render_edit_field(form.last_name, id='last_name') }}
+                      </tr>
+                      <tr>
+                        {{ render_edit_field(form.phone_number, id='phone_number') }}
+                      </tr>
+                      <tr>
+                        {{ render_date_field(form.d_o_b, id='d_o_b') }}
+                      </tr>
+                      <tr>
+                        <td>
+                        <label> Gender </label>
+                        </td>
+                        {{ render_radio_field(form.gender, id='gender') }}
+                      </tr>
+
+                      <!-- student field -->
+                      {% if user.is_what == '1' %}
+                        <tr>
+                          {{ render_edit_field(form.matric_no, id='matric_no') }}
+                        </tr>
+                        <tr>
+                          {{ render_edit_field(form.option, id='option') }}
+                        </tr>
+                        <tr>
+                          {{ render_edit_field(form.hostel_address, id='hostel_address') }}
+                        </tr>
+                        <tr>
+                          {{ render_edit_field(form.interests, id='interests') }}
+                        </tr>
+                      <!-- lecturer field -->
+                      {% elif user.is_what == '2' %}
+                        <tr>
+                          {{ render_edit_field(form.room_no, id='room_no') }}
+                        </tr>
+                        <tr>
+                          {{ render_edit_field(form.specialization, id='specializaton') }}
+                        </tr>
+                        <tr>
+                          {{ render_edit_field(form.degree, id='degree') }}
+                        </tr>
+
+                      {% endif %}
+                        <tr>
+                          {{ render_edit_field(form.profile_pic, id=picture) }}
+                        </tr>
+                    </table>
+                    <input type="submit" value="Update" class="btn btn-primary">
+                  </form>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                       
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+<script type="text/javascript" src="js/profile.js"></script>
+</body>
+</html>
+
+<!-- <form> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Firstname:</td>
+                        <td><input type="text" placeholder="{{ user.first_name }}"/></td>
+                      </tr>
+                      <tr>
+                        <td>Lastname:</td>
+                        <td><input type="text" placeholder="{{ user.last_name }}"/></td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+              <td><label class="radio">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" data-toggle="radio" checked="">
+                    Male
+                </label>
+                <label class="radio">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" data-toggle="radio">
+                    Female
+                </label>
+              </td>
+              
+                      </tr>
+                      <tr>
+                        <td>Hostel Address:</td>
+                        <td><input type="text" placeholder="{{ user.hostel_address }}"/></td>
+                      </tr>
+                      <tr>
+                        <td>Email:</td>
+                        <td><input type="email" placeholder="{{ user.email }}"/></td>
+                      </tr>
+            
+            <tr>
+                        <td>Matric Number:</td>
+                        <td><input type="text" placeholder="{{ user.matric_no }}"/></td>
+                      </tr>
+                        <td>Phone Number:</td>
+                        <td><input type="text" placeholder="{{ user.phone_number }}"/></td>
+                      </tr>
+                      </tr>
+                        <td>Interests: </td>
+                        <td><textarea placeholder="{{ user.interests }}" style="width:175px; height:80px;"></textarea></td>
+                      </tr>
+            
+            <tr>
+                        <td>Upload a photo</td>
+                        <td><input type="file" placeholder="upload a file"/></td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                  <input type="submit" value="Login" class="btn btn-primary">
+                </form> -->

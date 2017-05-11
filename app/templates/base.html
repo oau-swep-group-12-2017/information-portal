@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/bootstrap.min.css') }}">
+
+	{% if title %}
+      <title>{{ title }} - CSE Information Portal </title>
+
+      <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/home.css') }}">
+
+        {% if title.lower() == 'login' or title.lower() =='register' %}
+	    	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/login.css') }}">
+	    	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/animate.css') }}">
+	    {% elif 'profile' in title.lower() %}
+	    	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/profile.css') }}">
+	    	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/post.css') }}"> 	 
+
+	    {% endif %}
+	    
+	{% else %}
+      <title>Welcome to Information Portal</title>
+    {% endif %}
+
+</head>
+
+<body>
+{% block content %}{% endblock %}
+
+
+<footer>
+        <p> © 2017<a style="color:#0a93a6; text-decoration:none;" href="#"> Information portal</a>, All rights reserved.</p>
+</footer>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('.static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

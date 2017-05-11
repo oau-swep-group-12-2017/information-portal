@@ -1,0 +1,168 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+{% from "_formhelpers.html" import render_edit_field, render_post_field %}
+
+<nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><!-- <img src="{{ url_for('.static', filename='img/homeicon.ico') }}"> -->Information Portal</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+      <div class="row">
+<!--       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A>
+       <br>
+<p class=" text-info">May 05,2014,03:00 pm </p>
+      </div> -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Welcome Back, {{ user.username.capitalize() }}!
+                               <span class="pull-right"></span>
+                            <a href="{{ url_for('edit') }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+<!--                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                </span> -->
+              </h3>
+
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>First Name:</td>
+                        <td>{{ user.first_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name:</td>
+                        <td>{{ user.last_name }}</td>
+                      </tr>
+                       <tr>
+                        <td>Gender</td>
+                        <td>{{ user.gender }}</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>{{ user.d_o_b }}</td>
+                      </tr>
+                      <tr>
+                          <td>Email</td>
+                          <td><a href="#">{{ user.email }}</a></td>
+                      </tr>
+                      <tr>
+                          <td>Phone Number</td>
+                          <td>{{ user.phone_number }}</td>
+                      </tr>
+                      {% if user.is_what == '1' %}
+                        <tr>
+                          <td>Matric No:</td>
+                          <td>{{ user.matric_no }}</td>
+                        </tr>
+                        <tr>
+                          <td>Option:</td>
+                          <td>{{ user.option }}</td>
+                        </tr>
+                        <tr>
+                          <td>Hostel Address</td>
+                          <td>{{ user.hostel_address }}</td>
+                        </tr>
+                        <tr>
+                          <td>Interests: </td>
+                          <td>{{ user.interests }}</td>
+                        </tr>
+                      {% elif user.is_what == '2' %}
+                        <tr>
+                          <td>Room Number</td>
+                          <td>{{ user.room_no }}</td>
+                        </tr>
+                        <tr>
+                          <td>Specialization</td>
+                          <td>{{ user.specialization }}</td>
+                        </tr>
+                        <tr>
+                          <td>Degree</td>
+                          <td>{{ user.degree }}</td>
+                        </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                  
+                  <a href="#" class="btn btn-primary">Call Me</a>
+                  <!-- <a href="#" class="btn btn-primary">Text Me</a> -->
+                   <a data-original-title="Private Message" data-toggle="tooltip" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- post section -->
+  <!--               <div class="container">
+                    <div class="row">
+                      <h3>Status Upload Snipp</h3>
+                    </div>  -->         
+                      <div class="row">
+                      
+                      <div class="col-md-6">
+                                  <div class="widget-area no-padding blank">
+                                  <div class="status-upload">
+                                    <form method="post">
+                                    <!-- tr>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                      {{ render_edit_field(post_form.body, id='body') }}
+                                    </tr> -->
+                                    {% for field in post_form %}
+                                      {% if field != post_form.author %}
+                                        {{ render_post_field(field) }}
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% set author_name = "{0} {1}".format(user.first_name,
+                                                                user.last_name) %}
+                                      <input type="hidden" name="author" value="{{ author_name }}">
+                                      <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Post to Notice Board</button>
+                                    </form>
+                                  </div><!-- Status Upload  -->
+                                </div><!-- Widget Area -->
+                              </div>
+                          
+                    </div>
+             <!--        </div> -->
+                <!-- end post section -->
+
+                 <div class="panel-footer">
+                       
+                  </div>
+            
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
